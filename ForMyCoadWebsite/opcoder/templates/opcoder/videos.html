@@ -1,6 +1,9 @@
 {% extends 'opcoder/base.html' %}
 {% block body %}
 {% load static %}
+
+<link rel="stylesheet" href="{% static '/opcoder/css/video_playing.css' %}">
+
 <div class="playlistbutton">
     <div class="">
         {% if prev %}
@@ -18,14 +21,14 @@
 
     <button class="button-1" ><a href="/videos">All</a></button>
     <button class="button-1" ><a href="/playlists">playlist</a></button>
-    <button class="button-1" ><a href="/playlist/GA">gaming</a></button>
-    <button class="button-1" ><a href="/playlist/ED">python</a></button>
+<!--    <button class="button-1" ><a href="/playlist/GA">gaming</a></button>-->
+<!--    <button class="button-1" ><a href="/playlist/ED">python</a></button>-->
 </div>
 
 <div class="media">
 {% for v in videos %}
     <div class="video_cards">
-        <img class="thumbnail" src="/static/{{v.thumbnail}}" onclick="location.href = '/video_playing/{{v.slug}}'">
+        <img class="thumbnail" src="{{MEDIA_URL}}{{v.thumbnail.url}}" onclick="location.href = '/video_playing/{{v.slug}}'">
         <div>
             <h><a class="ctitle" href="/video_playing/{{v.slug}}">{{v.title}}</a></h>
             <div>

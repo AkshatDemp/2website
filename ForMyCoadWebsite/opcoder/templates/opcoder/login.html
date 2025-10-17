@@ -7,31 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'opcoder/css/login.css' %}">
     <script src="https://use.fontawesome.com/b25563bc12.js"></script>
-    <title>Login</title>
+    <title>Login - Code With Akshat</title>
 </head>
 <body>
     <div class="box">
+        <div>
+            {% if messages %}
+            <div>
+                {% for message in messages %}
+                {{message}}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
         <h1>LOGIN</h1>
-        <form action="/log_submit" method="get">
+        <form method="post" id="login-form">
+            {% csrf_token %}
             <div class="user">
-                <i class="fa fa-envelope" ></i>
-                <input type="email" placeholder="Email id">
+                <i class="fa fa-user"></i>
+                <input type="text" id="username" name="username" required placeholder="Username">
             </div>
             <div class="pass">
                 <i class="fa fa-key" ></i>
-                <input type="password" placeholder="password" id="myInput">
+                <input type="password" id="myInput" name="password" required placeholder="Password">
                 <span class="eye" onclick="myFunction()">
                     <i id="hide1" class="fa fa-eye"></i>
                     <i id="hide2" class="fa fa-eye-slash"></i>
                 </span>
             </div>
-            <button type="button">LOGIN</button>
+            <button type="submit" class="btn-login">LOGIN</button>
         </form>
 
     </div>
-    <audio autoplay >
-        <source src="{% static 'opcoder/song/Sleep Away.mp3' %}">
-    </audio>
     <video autoplay muted loop >
         <source src="{% static 'opcoder/video1/login.mp4' %}">
     </video>
@@ -51,9 +58,7 @@
                 y.style.display = "none";
                 z.style.display = "block";
             }
-
         }
     </script>
 </body>
 </html>
-

@@ -6,9 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static '/opcoder/css/style.css' %}">
-    <link rel="stylesheet" href="{% static '/opcoder/css/blog.css' %}">
-    <link rel="stylesheet" href="{% static '/opcoder/css/video_playing.css' %}">
     <link rel="stylesheet" href="{% static '/opcoder/css/styleresponsive.css' %}">
+    <link rel="stylesheet" href="{% static '/opcoder/css/blog.css' %}">
     <link rel="icon" type="image/icon" href="{% static 'opcoder/icon/favicon.ico' %}">
     <title>{% block title %}{% endblock title %}</title>
 </head>
@@ -22,12 +21,16 @@
                 <li><a href='/'>Home</a></li>
                 <li><a href=/videos>Video</a></li>
                 <li><a href=/blogs>Blog</a></li>
-                <li><a href=/comment>Comment</a></li>
+                <li><a href=/feedback>Feedback</a></li>
                 <li><a href=/profile>profile</a></li>
             </ul>
             <div class="div2 v-class-resp">
-                <button class="button-1"><a href="/login">login</a></button>
-                <button class="button-1"><a href="/sign_up">SignUp</a></button>
+                {% if request.user.is_authenticated %}
+                    <button class="button-1"><a href="/logout">logout</a></button>
+                {% else %}
+                    <button class="button-1"><a href="/login">login</a></button>
+                    <button class="button-1"><a href="/register">SignUp</a></button>
+                {% endif %}
                 <form action="/search" method="get">
                     <input class="inp-1" type="search" name="slug" placeholder="Search" aria-label="Search">
                     <button class="button-1" type="submit">Search</button>

@@ -26,7 +26,7 @@ video{
     text-align: center;
     box-shadow:0 0 20px 20px rgba(212, 4, 4, 0.5);
 }
-.box input[type = "email"],.box input[type = "password"],.box input[type = "text"]{
+.box input{
     border: 0;
     background: none;
     display: block;
@@ -41,12 +41,12 @@ video{
     transition: 0.25s;
 }
 
-.box input[type = "email"]:focus,.box input[type = "text"]:focus,.box input[type = "password"]:focus{
+.box input:focus{
     width: 280px;
     border-color: #2ecc71;
 }
 
-.box button[type = "button"]{
+.btn-login[type = "submit"]{
     border: 0;
     background: none;
     display: block;
@@ -61,7 +61,7 @@ video{
     cursor:pointer;
 }
 
-.box button[type = "button"]:hover{
+.btn-login[type = "submit"]:hover{
     background: #2ecc71;
 }
 
@@ -82,9 +82,22 @@ h1{
     padding-left:25px;
 }
 
+.fa-eye , .fa-eye-slash{
+    cursor: pointer;
+}
+
 i{
     color: white;
     size: 20;
     padding-top:25px;
 }
-
+.links a{
+    text-decoration: none;
+    color: #2ecc71;
+    font-size: 1.3rem;
+    margin: 2px;
+}
+.helptext{
+    text-decoration: none;
+    color: white;
+}

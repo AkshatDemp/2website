@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'opcoder/css/login.css' %}">
+    <script src="https://use.fontawesome.com/b25563bc12.js"></script>
+    <title>Signup - Code With Akshat</title>
+</head>
+<body>
+    <div class="box">
+        <div>
+            {% if messages %}
+            <div>
+                {% for message in messages %}
+                {{message}}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <h1>SIGN UP</h1>
+        <form method="POST" id="signup-form">
+            {% csrf_token %}
+            <div class="user">
+                <i class="fa fa-male"></i>
+                <input type="text" id="first_name" name="first_name" required placeholder="Full Name">
+            </div>
+            <div class="user">
+                <i class="fa fa-envelope" ></i>
+                <input type="email" id="email" name="email" required placeholder="Email">
+            </div>
+            <div class="user">
+                <i class="fa fa-user" ></i>
+                <input  type="text" id="username" name="username" required placeholder="Username">
+            </div>
+            <div class="pass">
+                <i class="fa fa-key" ></i>
+                <input type="password"  name="password" required placeholder="password" id="myInput">
+                <span class="eye" onclick="myFunction()">
+                    <i id="hide1" class="fa fa-eye"></i>
+                    <i id="hide2" class="fa fa-eye-slash"></i>
+                </span>
+            </div>
+            <button type="submit"  class="btn-login">SignUp</button>
+        </form>
+
+    </div>
+    <video autoplay muted loop >
+        <source src="{% static 'opcoder/video1/login.mp4' %}">
+    </video>
+    <script>
+        function myFunction(){
+            var x = document.getElementById("myInput");            
+            var y = document.getElementById("hide1");            
+            var z = document.getElementById("hide2");
+            
+            if(x.type === 'password'){
+                x.type = "text";
+                y.style.display = "block";
+                z.style.display = "none";
+            }
+            else{
+                x.type = "password";
+                y.style.display = "none";
+                z.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

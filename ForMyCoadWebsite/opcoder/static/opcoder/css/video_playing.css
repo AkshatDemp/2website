@@ -93,18 +93,38 @@
 .vlike{
     font-size: 1.4rem;
 }
+.vtitle_like_btn{
+    display:flex;
+    margin-bottom: 2px;
+}
 .vdescription{
     margin-inline: 7%;
     font-family: "Roboto","Arial",sans-serif;
     font-size: 1.3rem;
     line-height: 2rem;
     font-weight: 350;
-    background-color: gray;
+    background-color: #dcdcdc;
     border-radius: 12px;
     padding: 12px;
 }
 .vdesc{
     /* width: inherit; */
+}
+.video-comment{
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 1.3rem;
+    line-height: 2rem;
+    font-weight: 350;
+    margin-inline: 7%;
+    padding: 12px
+}
+.new_comment{
+    width: 70%;
+    height: 60px;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 1.3rem;
+    line-height: 2rem;
+    font-weight: 350;
 }
 
 .vpsection2{
@@ -142,4 +162,21 @@
     font-size: 1.1rem;
     overflow-x: hidden;
     text-overflow: ellipsis;
+}
+
+.video-btn {
+    text-decoration: none;
+    background-color: rgb(0, 176, 82);
+    color: white;
+    padding: 10px 20px;
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.video-btn:hover {
+    background-color: rgba(0, 176, 82, 0.781);
 }

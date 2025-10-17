@@ -1,0 +1,95 @@
+{% extends 'opcoder/base.html' %}
+{% block body %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static '/opcoder/css/feedback.css' %}">
+
+<section class="feedback-section">
+    <div class="container">
+        <header class="header">
+            <h1>Your Feedback Matters</h1>
+            <p>Help us improve the content, features, and overall experience.</p>
+        </header>
+
+        {% if messages %}
+            <div class="message-container">
+                {% for message in messages %}
+                <div class="message-box {% if message.tags == 'success' %}message-success{% elif message.tags == 'error' %}message-error{% else %}message-info{% endif %}" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="grid-2-cols">
+                <div class="form-group">
+                    <label for="{{ form.category.id_for_label }}">
+                        {{ form.category.label }}
+                    </label>
+                    <div class="relative">
+                        {{ form.category }}
+                        {% if form.category.errors %}
+                            <p class="text-red-600">{{ form.category.errors|striptags }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.rating.id_for_label }}">
+                        {{ form.rating.label }}
+                    </label>
+                    <div class="relative">
+                        {{ form.rating }}
+                        {% if form.rating.errors %}
+                            <p class="text-red-600">{{ form.rating.errors|striptags }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.subject.id_for_label }}">
+                    {{ form.subject.label }}
+                </label>
+                {{ form.subject }}
+                {% if form.subject.errors %}
+                    <p class="text-red-600">{{ form.subject.errors|striptags }}</p>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.message.id_for_label }}">
+                    {{ form.message.label }}
+                </label>
+                {{ form.message }}
+                {% if form.message.errors %}
+                    <p class="text-red-600">{{ form.message.errors|striptags }}</p>
+                {% endif %}
+            </div>
+
+            <div class="grid-2-cols border-top">
+                <div class="form-group">
+                    <label for="{{ form.name.id_for_label }}">
+                        {{ form.name.label }}
+                    </label>
+                    {{ form.name }}
+                    <p class="text-xs text-gray-400">If you are logged in, this is auto-filled.</p>
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}">
+                        {{ form.email.label }}
+                    </label>
+                    {{ form.email }}
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="submit-btn">Submit Feedback</button>
+            </div>
+        </form>
+    </div>
+
+</section>
+
+{% endblock body%}

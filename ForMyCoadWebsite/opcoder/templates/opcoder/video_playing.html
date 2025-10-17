@@ -2,31 +2,70 @@
 {% block body %}
 {% load static %}
 
+<link rel="stylesheet" href="{% static '/opcoder/css/video_playing.css' %}">
+
 <div class="vpsection0">
     <div class="vpsection1">
         <div class="vscreen">
-            {% if types == "https" %}
+            {% if types != "personalcode-v1" %}
             <iframe class="vscreen1" src="{{name.source}}" frameborder="0" 
             allow="accelerometer; encrypted-media; gyroscope; web-share" allowfullscreen></iframe>
             {% else %}
-            <video class="vscreen1" preload="metadata" poster="\static\{{name.thumbnail}}" controls="controls">
-                <source src= "\static\{{name.source}}">
+            <video class="vscreen1" preload="metadata" poster="{{MEDIA_URL}}{{name.thumbnail.url}}" controls="controls">
+                <source src= "{{name.source}}">
             </video>
             {% endif %}
         </div>
-        <h class="vtitle">{{name.title}}</h>
-        <p class="vtitle vlike">{{name.tviews}} views | Likes {{name.tlikes}}</p>
+        <h1 class="vtitle">{{name.title}}</h1>
+        <div class="vtitle_like_btn">
+            <p class="vtitle vlike">{{name.tviews}} views | Likes <span id="like-count">{{name.tlikes}}</span></p>
+            {% if request.user.is_authenticated %}
+            <button  id="like-button" data-post-id="{{ name.sno }}" class="video-btn">👍 Like</button>
+            {% else %}
+                <h3>Login to Like this video</h3>
+            {% endif %}
+        </div>
         <div class="vdescription">
             <p>{{name.date.date}}</p>
             <p class="vdesc">{{name.desc}}</p>
+        </div>
+        <div class="video-comment">
+            <h1>Comment Section</h1>
+
+            {% if request.user.is_authenticated %}
+            <form id="comment-form" method="post" data-post-id="{{ name.sno }}">
+                {% csrf_token %}
+                <div class="">
+                    <textarea class="new_comment" id="new_comment" name="new_comment" required></textarea>
+                </div>
+                <button type="submit" class="video-btn">Comment</button>
+            </form>
+            {% else %}
+                <h2>Login to comment</h2>
+            {% endif %}
+
+            <div id="comment-list-container">
+            {% if not name.videoComment.all %}
+                <h2 id="no-comments-msg">No Comments yet...Add one</h2>
+            {% else %}
+                {% for comment in name.videoComment.all %}
+                <div class="video-comment-body">
+                    <p>{{ comment.body }}</p>
+                    <div class="video-comment-meta">
+                        {{ comment.name }} | {{ comment.date|date:"d-m-Y" }}
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+            </div>
         </div>
     </div>
     <div class="vpsection2">
         <div class="playlistbutton">
             <button class="button-1" ><a href="/videos">All</a></button>
             <button class="button-1" ><a href="/playlists">playlist</a></button>
-            <button class="button-1" ><a href="/playlist/GA">gaming</a></button>
-            <button class="button-1" ><a href="/playlist/ED">python</a></button>
+<!--            <button class="button-1" ><a href="/playlist/GA">gaming</a></button>-->
+<!--            <button class="button-1" ><a href="/playlist/ED">python</a></button>-->
         </div>
         {% if plvideos != 'None' %}
         <div class="plvs">
@@ -34,7 +73,7 @@
             <div class="moreV plslip">
                 {% for v in plvideos %}
                     <div class="video_slip">
-                        <img class="thumbnail_slip" src="/static/{{v.thumbnail}}" onclick="location.href = '/video_playing/{{v.slug}}'">
+                        <img class="thumbnail_slip" src="{{MEDIA_URL}}{{v.thumbnail.url}}" onclick="location.href='/video_playing/{{v.slug}}'">
                         <div class="sdiv">
                             <h class="stitle"><a href="/video_playing/{{v.slug}}" class="text-dark">{{v.title}}</a></h>
                             <p class="sdata">views {{v.tviews}} | Likes {{v.tlikes}} | {{v.date}}</p>
@@ -47,7 +86,7 @@
         <div class="moreV">
             {% for v in mvideos %}
                 <div class="video_slip">
-                    <img class="thumbnail_slip" src="/static/{{v.thumbnail}}" onclick="location.href = '/video_playing/{{v.slug}}'">
+                    <img class="thumbnail_slip" src="{{MEDIA_URL}}{{v.thumbnail.url}}" onclick="location.href='/video_playing/{{v.slug}}'">
                     <div class="sdiv">
                         <h class="stitle"><a href="/video_playing/{{v.slug}}" class="text-dark">{{v.title}}</a></h>
                         <p class="sdata">views {{v.tviews}} | Likes {{v.tlikes}} | {{v.date.date}}</p>
@@ -57,5 +96,124 @@
         </div>
     </div>
 </div>
+
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const likeButton = document.getElementById('like-button');
+    if (likeButton) {
+        likeButton.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const postId = this.dataset.postId;
+            const likeCountElement = document.getElementById('like-count');
+            const csrftoken = getCookie('csrftoken');
+            const likeUrl = `/like_video/${postId}/`;
+
+            fetch(likeUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({}) // Empty body
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (likeCountElement && data.likes_count !== undefined) {
+                    likeCountElement.textContent = data.likes_count;
+                }
+                this.disabled = true;
+                this.textContent = 'Liked! 👍';
+            })
+            .catch(error => {
+                console.error('Error liking the post:', error);
+                alert(`Error: ${error.message}`);
+            });
+        });
+    }
+
+    const commentForm = document.getElementById('comment-form');
+    if (commentForm) {
+        commentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const postId = this.dataset.postId;
+            const commentBodyInput = document.getElementById('new_comment');
+            const commentBody = commentBodyInput.value.trim();
+            const commentListContainer = document.getElementById('comment-list-container');
+            const noCommentsMsg = document.getElementById('no-comments-msg');
+            const csrftoken = getCookie('csrftoken');
+            const commentUrl = `/comment_video/${postId}/`;
+
+            if (!commentBody) {
+                alert('Comment cannot be empty.');
+                return;
+            }
+
+            fetch(commentUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({
+                    'comment_body': commentBody
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    if(response.status === 403) {
+                         throw new Error('You must be logged in to comment.');
+                    }
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    if (noCommentsMsg) {
+                        noCommentsMsg.remove();
+                    }
+                    const newCommentHtml = `
+                        <div class="comment">
+                            <p>${data.comment_body}</p>
+                            <div class="comment-meta">
+                                ${data.comment_name} | ${data.comment_date}
+                            </div>
+                        </div>
+                    `;
+                    commentListContainer.insertAdjacentHTML('afterbegin', newCommentHtml);
+
+                    commentBodyInput.value = '';
+                }
+            })
+            .catch(error => {
+                console.error('Error adding comment:', error);
+                alert(`Error: ${error.message}`);
+            });
+        });
+    }
+</script>
 
 {% endblock body %}

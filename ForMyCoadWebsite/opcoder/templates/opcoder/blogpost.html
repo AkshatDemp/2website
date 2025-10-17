@@ -1,17 +1,176 @@
 {% extends 'opcoder/base.html' %}
 {% block body %}
 
-<div class="container">
-    <h1>Welcome to Akshat Blogs</h1>
-    <p>You will find our community thoughts, views and opinion hare on current topics as earliest. </p>
-    <div class="media">
-        <div class="media-body">
-            <h2 class="mt-0">{{name.sno}}.{{name.title}}</h2>
-            <br>{{name.time}}<br>
-            <p>{{name.longcontent}}</p>
+<div class="blog-container">
+    <h1 class="blog-title">Welcome to Blog Center</h1>
+    <p>You will find our community thoughts, views and opinion here on current topics as earliest.</p>
+
+    <div class="blog-content">
+        <div class="blog-body">
+            <h2 class="mt-0">{{post.title}}</h2>
+            {{post.owner}} | {{post.time.date}}
+            views {{post.views}} | Likes <span id="like-count">{{post.likes}}</span>
+            <div>
+                <p>{{post.content|safe}}</p>
+            </div>
         </div>
-        <a href="/blogs" class="text-dark"><button class="btn btn-primary">More Blogs...</button></a>
+        <a href="/blogs" class=""><button class="blog-btn">More Blogs...</button></a>
+        <div class="">
+            {% if request.user.is_authenticated %}
+            <button  id="like-button" data-post-id="{{ post.sno }}" class="blog-btn">👍 Like</button>
+            {% else %}
+            <h3>Login to Like and comment on this video</h3>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="blog-comment">
+        <h1>Comment Section</h1>
+
+        {% if request.user.is_authenticated %}
+        <form id="comment-form" method="post" data-post-id="{{ post.sno }}">
+            {% csrf_token %}
+            <div class="">
+                <textarea id="new_comment" name="new_comment" required></textarea>
+            </div>
+            <button type="submit" class="blog-btn">Comment</button>
+        </form>
+        {% endif %}
+
+        <div id="comment-list-container">
+        {% if not post.blogComment.all %}
+            <h2 id="no-comments-msg">No Comments yet...Add one</h2>
+        {% else %}
+            {% for comment in post.blogComment.all %}
+            <div class="comment">
+                <p>{{ comment.body }}</p>
+                <div class="comment-meta">
+                    {{ comment.name }} | {{ comment.date|date:"d-m-Y" }}
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+        </div>
     </div>
 </div>
+
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const likeButton = document.getElementById('like-button');
+    if (likeButton) {
+        likeButton.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const postId = this.dataset.postId;
+            const likeCountElement = document.getElementById('like-count');
+            const csrftoken = getCookie('csrftoken');
+            const likeUrl = `/like_blog_post/${postId}/`;
+
+            fetch(likeUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({}) // Empty body
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (likeCountElement && data.likes_count !== undefined) {
+                    likeCountElement.textContent = data.likes_count;
+                }
+                this.disabled = true;
+                this.textContent = 'Liked! 👍';
+            })
+            .catch(error => {
+                console.error('Error liking the post:', error);
+                alert(`Error: ${error.message}`);
+            });
+        });
+    }
+
+    const commentForm = document.getElementById('comment-form');
+    if (commentForm) {
+        commentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const postId = this.dataset.postId;
+            const commentBodyInput = document.getElementById('new_comment');
+            const commentBody = commentBodyInput.value.trim();
+            const commentListContainer = document.getElementById('comment-list-container');
+            const noCommentsMsg = document.getElementById('no-comments-msg');
+            const csrftoken = getCookie('csrftoken');
+            const commentUrl = `/blog_comment/${postId}/`;
+
+            if (!commentBody) {
+                alert('Comment cannot be empty.');
+                return;
+            }
+
+            fetch(commentUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({
+                    'comment_body': commentBody
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    if(response.status === 403) {
+                         throw new Error('You must be logged in to comment.');
+                    }
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    if (noCommentsMsg) {
+                        noCommentsMsg.remove();
+                    }
+                    const newCommentHtml = `
+                        <div class="comment">
+                            <p>${data.comment_body}</p>
+                            <div class="comment-meta">
+                                ${data.comment_name} | ${data.comment_date}
+                            </div>
+                        </div>
+                    `;
+                    commentListContainer.insertAdjacentHTML('afterbegin', newCommentHtml);
+
+                    commentBodyInput.value = '';
+                }
+            })
+            .catch(error => {
+                console.error('Error adding comment:', error);
+                alert(`Error: ${error.message}`);
+            });
+        });
+    }
+</script>
 
 {% endblock body %}

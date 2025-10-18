@@ -21,8 +21,10 @@
 
     <button class="button-1" ><a href="/videos">All</a></button>
     <button class="button-1" ><a href="/playlists">playlist</a></button>
-<!--    <button class="button-1" ><a href="/playlist/GA">gaming</a></button>-->
-<!--    <button class="button-1" ><a href="/playlist/ED">python</a></button>-->
+    <button class="button-1" ><a href="/videos/59">Gaming</a></button>
+    <button class="button-1" ><a href="/videos/101">Education</a></button>
+    <button class="button-1" ><a href="/videos/107">Python</a></button>
+    <button class="button-1" ><a href="/videos/137">Mixed</a></button>
 </div>
 
 <div class="media">
@@ -30,7 +32,7 @@
     <div class="video_cards">
         <img class="thumbnail" src="{{MEDIA_URL}}{{v.thumbnail.url}}" onclick="location.href = '/video_playing/{{v.slug}}'">
         <div>
-            <h><a class="ctitle" href="/video_playing/{{v.slug}}">{{v.title}}</a></h>
+            <h3><a class="ctitle" href="/video_playing/{{v.slug}}">{{v.title}}</a></h3>
             <div>
                 <p class="cdata">views {{v.tviews}} | Likes {{v.tlikes}}</p>
                 <p class="cdata">{{v.date.date}}</p>

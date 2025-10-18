@@ -27,7 +27,7 @@
         </div>
         <div class="vdescription">
             <p>{{name.date.date}}</p>
-            <p class="vdesc">{{name.desc}}</p>
+            <p class="vdesc">{{name.desc|linebreaks}}</p>
         </div>
         <div class="video-comment">
             <h1>Comment Section</h1>
@@ -64,8 +64,9 @@
         <div class="playlistbutton">
             <button class="button-1" ><a href="/videos">All</a></button>
             <button class="button-1" ><a href="/playlists">playlist</a></button>
-<!--            <button class="button-1" ><a href="/playlist/GA">gaming</a></button>-->
-<!--            <button class="button-1" ><a href="/playlist/ED">python</a></button>-->
+            <button class="button-1" ><a href="/videos/59">Gaming</a></button>
+            <button class="button-1" ><a href="/videos/101">Education</a></button>
+            <button class="button-1" ><a href="/videos/137">Mixed</a></button>
         </div>
         {% if plvideos != 'None' %}
         <div class="plvs">

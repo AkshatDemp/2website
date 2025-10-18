@@ -5,7 +5,7 @@ from .import views, views1, views2
 urlpatterns = [
     # For views
     path('', views.index, name='opcoder'),
-    path('search/', views.search, name='search'),
+    path('search/', views.search, name='search_view'),
     path('profile/', views.profile, name='profile'),
     path('blogs/', views.blog, name='blog'),
     path('blogpost/<str:slug>',views.blogpost,name='blogpost'),
@@ -22,6 +22,7 @@ urlpatterns = [
 
     # For views2
     path('videos/', views2.video, name='video'),
+    path('videos/<int:factor>', views2.category, name='category'),
     path('video_playing/<str:slug>', views2.video_playing, name='video_playing'),
     path('playlists/', views2.playlists, name='playlists'),
     path('playlist/<str:slug>', views2.plvideos, name='video_in_playlist'),

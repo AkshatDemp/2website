@@ -45,7 +45,7 @@ def generate_fixed_length_slug(title, length=18):
 # education: 101, 103, 107, 109, 113, 127, 131, extra: 137, 139, 149, 151, 157.
 categoryDect = {"entertainment":41,
                 "games":59, "minecraft":61, "GTASan":67,
-                "education":101, "projects":103, "python":107, "techNews":109,
+                "education":101, "projects":103, "python":107, "techNews":109, "java":113,
                 "noCat":137}
 
 def generate_category_id(categories):

@@ -50,7 +50,7 @@ class Playlist(models.Model):
             if old.thumbnail and old.thumbnail != self.thumbnail:
                 old.thumbnail.delete(save=False)  # Delete old photo from S3
             else:
-                super().save(*args, **kwargs)
+                return super().save(*args, **kwargs)
 
         output = img_preprocessing(self.thumbnail)
         self.thumbnail = InMemoryUploadedFile(
@@ -95,7 +95,7 @@ class Video(models.Model):
             if old.thumbnail and old.thumbnail != self.thumbnail:
                 old.thumbnail.delete(save=False)  # Delete old photo from S3
             else:
-                super().save(*args, **kwargs)
+                return super().save(*args, **kwargs)
 
         output = img_preprocessing(self.thumbnail)
         self.thumbnail = InMemoryUploadedFile(

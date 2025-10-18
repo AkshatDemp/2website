@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from math import ceil as c
-from .models import *
+from .models import Blog, BlogComment, Video
+from django.db.models.expressions import RawSQL
 
+from re import sub
 import json
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
@@ -10,16 +12,41 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+COMMON_STOP_WORDS = {
+    'the', 'a', 'an', 'is', 'are', 'was', 'were', 'of', 'in', 'on', 'at',
+    'to', 'for', 'with', 'and', 'but', 'or', 'by', 'as', 'it', 'its'}
 
 def index(request):
     return render(request, "opcoder/index.html")
 
 def search(request):
-    a = (request.GET.get("slug"))
-    longblogs = Blog.objects.filter(slug=a).first()
-    print(longblogs)
-    longblogslist = {'name': longblogs}
-    return render(request, 'opcoder/blogpost.html', longblogslist)
+    query_string = request.GET.get('slug', '')
+    blog_results = Blog.objects.none()
+    video_results = Video.objects.none()
+
+    query_string = query_string.lower()
+    # Remove punctuation
+    query_string = sub(r'[^\w\s]', '', query_string)
+    words = query_string.split()
+    filtered_words = [word for word in words if word not in COMMON_STOP_WORDS]
+
+    # 4. Re-join the clean words into a string for the MySQL FTS engine
+    # We use '+' to force MySQL to match ALL words (Boolean Mode)  or f"'{query}*'"
+    search_term = " ".join(f'+{word}' for word in filtered_words)
+
+    fts_rank_sql = "MATCH (title) AGAINST (%s IN BOOLEAN MODE)"
+    if search_term:
+        blog_results = Blog.objects.annotate(
+            rank=RawSQL(fts_rank_sql, (search_term,))
+        ).filter(rank__gt=0).order_by('-rank', '-time')
+
+        video_results = Video.objects.annotate(
+            rank=RawSQL(fts_rank_sql, (search_term,))
+        ).filter(rank__gt=0).order_by('-rank', '-tviews')
+
+    context = {'query': query_string, 'blog_results': blog_results, 'video_results': video_results}
+
+    return render(request, 'opcoder/search_results.html', context)
 
 def profile(request):
     return render(request, "opcoder/profile.html")

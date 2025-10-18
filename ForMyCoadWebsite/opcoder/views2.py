@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import *
+from .models import Playlist, Video, VideoComment
 from math import ceil as c
 import random
 import json
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
+from django.db.models.expressions import RawSQL
 
 # For video and profile logic.
 
@@ -18,7 +19,6 @@ def show_videos(request, videos):
         page = int(page)
 
     length = len(videos)
-    # videos = random.sample(videos, length)
     videos = videos[(page-1)*no_of_videos: page*no_of_videos]
     if page > 1:
         prev = page-1
@@ -30,13 +30,23 @@ def show_videos(request, videos):
         nxt = None
     context = {'videos': videos, 'prev': prev, 'nxt': nxt}
     return render(request, "opcoder/videos.html", context)
+
+
 def video(request):
-    videos = Video.objects.all()
+    videos = Video.objects.all().order_by('-date')
+    return show_videos(request, videos)
+
+
+def category(request, factor):
+    videos = Video.objects.annotate(
+        is_divisible=RawSQL("categoryId %% %s = 0", (factor,))
+    ).filter(is_divisible=True)
+
     return show_videos(request, videos)
 
 
 def plvideos(request, slug):
-    videos = Video.objects.filter(playlist__slug=slug)
+    videos = Video.objects.filter(playlist__slug=slug).order_by('-date')
     return show_videos(request, videos)
 
 
@@ -52,12 +62,19 @@ def video_playing(request, slug):
         video_found.tviews += 1
         video_found.save()
 
+    more_videos = Video.objects.filter(visi=True)
     pl_videos = 'None'
     if video_found.playlist:
         pl_videos = Video.objects.filter(playlist=video_found.playlist)
+        more_videos = more_videos.exclude(playlist=video_found.playlist)
 
-    mvideos = list(Video.objects.all())
-    more_videos = random.sample(mvideos, len(mvideos))
+    # fetching related videos
+    factor = video_found.categoryId
+    more_videos = more_videos.annotate(gcd_value=RawSQL("GCD(categoryid, %s)", (factor,))
+                                       ).order_by('-gcd_value', '-tviews')[:10]
+
+    # more_videos = list(more_videos)
+    # more_videos = random.sample(more_videos, len(more_videos))
 
     context = {'name': video_found, 'types':video_found.source[8:23], 'plvideos':pl_videos, 'mvideos':more_videos}
     return render(request, "opcoder/video_playing.html", context)

@@ -13,10 +13,9 @@
 </div>
 
 <div class="media">
-    <h1>playlists</h1>
     {% for p in playlists %}
     <div class="playlist_card">
-        <img class="thumbnail" src="{{MEDIA_URL}}{{p.thumbnail.url}}" onclick="location.href='/playlist/{{p.slug}}'">
+        <img class="thumbnail" src="{{p.thumbnail.url}}" onclick="location.href='/playlist/{{p.slug}}'">
         <div>
             <h class="ctitle"><a href="/playlist/{{p.slug}}">{{p.title}}</a></h>
             <p class="cdate">{{p.date.date}}</p>

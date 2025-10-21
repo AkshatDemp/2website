@@ -36,7 +36,7 @@
     <div class="media">
         {% for v in video_results %}
         <div class="video_cards">
-            <img class="thumbnail" src="{{MEDIA_URL}}{{v.thumbnail.url}}" onclick="location.href = '/video_playing/{{v.slug}}'">
+            <img class="thumbnail" src="{{v.thumbnail.url}}" onclick="location.href = '/video_playing/{{v.slug}}'">
             <div>
                 <h2><a class="ctitle" href="/video_playing/{{v.slug}}">{{v.title}}</a></h2>
                 <div>

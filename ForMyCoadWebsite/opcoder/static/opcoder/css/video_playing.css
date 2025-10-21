@@ -8,6 +8,7 @@
     align-items: center;
     overflow-x: auto;
     padding-top: 9px;
+    flex-wrap: wrap;
 }
 .thumbnail{
     width: 318px;
@@ -66,10 +67,9 @@
     max-width: 1450px;
 }
 .vpsection1{
-    width: 70%;
+    min-width: 70%;
     background: transparent;
-    display: flex;
-    flex-direction: column;
+    flex: 1;
 }
 .vscreen{
     width: 85%;
@@ -106,6 +106,7 @@
     background-color: #dcdcdc;
     border-radius: 12px;
     padding: 12px;
+    margin-bottom: 15px
 }
 .vdesc{
     /* width: inherit; */
@@ -113,22 +114,24 @@
 .video-comment{
     font-family: Roboto, Arial, sans-serif;
     font-size: 1.3rem;
-    line-height: 2rem;
+    line-height: 1.6;
     font-weight: 350;
     margin-inline: 7%;
-    padding: 12px
+    padding: 12px;
+}
+.vcomment{
+    display: flex;
+    align-items: center;
 }
 .new_comment{
-    width: 70%;
-    height: 60px;
+    width: 80%;
     font-family: Roboto, Arial, sans-serif;
     font-size: 1.3rem;
-    line-height: 2rem;
+    line-height: 1rem;
     font-weight: 350;
 }
 
 .vpsection2{
-    width: 31%;
     background: transparent;
     display: flex;
     flex-direction: column;

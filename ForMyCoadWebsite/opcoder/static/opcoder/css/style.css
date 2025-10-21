@@ -4,12 +4,12 @@
     --background-color: #eff5f3;
     --text-color: #4d4d4d;
     --accent-color: #eff5f3;
+    --max-width: 1400px;
 }
 
 *{
     margin:0;
     padding:0;
-    /* . is for class make by us where objects without . is like image div li ul etc. */
 }
 .nav-bar{ 
     top: 0;  
@@ -47,11 +47,6 @@ h2{
     height: 35px;
     margin: 4px;
 }
-.background{
-    background: rgba(0,0,0,0.6) url("../img/background/bg2(1).jpg");
-    /* background-size: cover;
-    background-blend-mode: darken; */
-}
 .logo{
     /* cursor: pointer; */
     border: 2px solid white;
@@ -77,11 +72,6 @@ a{
 .button-1:hover{
     background-color: rgba(0, 176, 82, 0.781);
     border-radius: 14px;
-    padding-inline: 9px;
-    height: 35px;
-    cursor: pointer;
-    font-size:19px;
-    margin: 4px;
 }
 li{
     display: inline-flex;
@@ -98,36 +88,55 @@ li a{
     text-decoration: none;
 }
 
+.section0{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: auto;
+    max-width: 1450px;
+}
 
 .div3{
-    display:flex;
-    height: 24rem;
-    margin-inline: auto;
-    max-width: 1500px;
-}
-.uli3{
+    flex: 1;
     width: 50%;
-    padding-top: 20px;
+    padding: 20px;
     text-align: left;
 }
-.div-exp{
+
+.div3-exp{
     display: flex;
+    gap: 15px;
+    margin-top: 20px;
 }
 .uli4{
     width:50%;
+}
+.uli4-exp{
+    max-width: 100%;
 }
 
 .p1{
     margin-bottom: 22px;
 }
+
+.button-2 a{
+    color: #FAF9F6;
+    font-size:20px;
+}
 .button-2{
-    color: #fff;
+    min-width: 125px;
+    height: 30px;
     background-color: #1577e0;
     border: 1px #1577e0;
-    cursor: pointer;
-    padding: 8px 45px;
     border-radius: 8px;
+    padding-inline: 9px;
+    cursor: pointer;
 
+    margin: 4px
+}
+.button-2:hover{
+    background-color: #085eb9;
+    border: 1px #085eb9;
 }
 
 .section1{
@@ -140,7 +149,7 @@ li a{
     font-size: 1.7rem;
     margin-left: auto;margin-right: auto;
     align-items: center;
-    max-width: 1450px;
+    max-width: var(--max-width);
 }
 .q-ul-1{
     font-style: italic;
@@ -152,19 +161,13 @@ li a{
     width:50%;
 }
 
-.button-2:hover{
-    color: #fff;
-    background-color: #085eb9;
-    border: 1px #085eb9;
-    cursor: pointer;
-    padding: 8px 45px;
-    border-radius: 8px;
-}
 h5{
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
     font-size: 2.25rem;
     text-align: center;
+    margin-inline: auto;
+    max-width: var(--max-width);
 }
 .section2{
     margin-block-end: 52px;
@@ -172,7 +175,7 @@ h5{
     flex-wrap: wrap;
     align-items: center;
     margin-inline: auto;
-    max-width: 1500px;   
+    max-width: var(--max-width);
 }
 .div4{
     text-align: center;

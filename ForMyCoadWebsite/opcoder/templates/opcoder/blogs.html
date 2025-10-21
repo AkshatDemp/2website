@@ -4,14 +4,14 @@
 <section class="blog-s1">
 <div class="blog-container">
     <h1 class="blog-title">Welcome to Blog Center</h1>
-    <p>You will find our community thoughts, views and opinion here on current topics as earliest.</p>
+    <p class="blog-title-2">You will find our community thoughts, views and opinion here on current topics as earliest.</p>
     <div class="bmedia">
         {% for bg in blogs %}
         <div class="blog-item">
             <h3 class="blog-title"><a href="/blogpost/{{bg.slug}}">{{bg.sno}}.{{bg.title}}</a></h3>
             <p class="blog-meta">{{bg.owner}} | {{bg.time.date}}</p>
-            <p class="blog-content">{{bg.content|safe|truncatewords:48}}</p>
-            <a href="/blogpost/{{bg.slug}}"><button class="blog-btn">Read More...</button></a>
+            {{bg.content|safe|truncatewords:48}}
+            <button class="blog-btn"><a href="/blogpost/{{bg.slug}}">Read More...</a></button>
         </div>
         {% endfor %}
     </div>

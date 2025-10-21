@@ -11,7 +11,7 @@
             <iframe class="vscreen1" src="{{name.source}}" frameborder="0" 
             allow="accelerometer; encrypted-media; gyroscope; web-share" allowfullscreen></iframe>
             {% else %}
-            <video class="vscreen1" preload="metadata" poster="{{MEDIA_URL}}{{name.thumbnail.url}}" controls="controls">
+            <video class="vscreen1" preload="metadata" poster="{{name.thumbnail.url}}" controls="controls">
                 <source src= "{{name.source}}">
             </video>
             {% endif %}
@@ -35,10 +35,10 @@
             {% if request.user.is_authenticated %}
             <form id="comment-form" method="post" data-post-id="{{ name.sno }}">
                 {% csrf_token %}
-                <div class="">
+                <div class="vcomment">
                     <textarea class="new_comment" id="new_comment" name="new_comment" required></textarea>
+                    <button type="submit" class="video-btn">Comment</button>
                 </div>
-                <button type="submit" class="video-btn">Comment</button>
             </form>
             {% else %}
                 <h2>Login to comment</h2>
@@ -74,7 +74,7 @@
             <div class="moreV plslip">
                 {% for v in plvideos %}
                     <div class="video_slip">
-                        <img class="thumbnail_slip" src="{{MEDIA_URL}}{{v.thumbnail.url}}" onclick="location.href='/video_playing/{{v.slug}}'">
+                        <img class="thumbnail_slip" src="{{v.thumbnail.url}}" onclick="location.href='/video_playing/{{v.slug}}'">
                         <div class="sdiv">
                             <h class="stitle"><a href="/video_playing/{{v.slug}}" class="text-dark">{{v.title}}</a></h>
                             <p class="sdata">views {{v.tviews}} | Likes {{v.tlikes}} | {{v.date}}</p>
@@ -87,7 +87,7 @@
         <div class="moreV">
             {% for v in mvideos %}
                 <div class="video_slip">
-                    <img class="thumbnail_slip" src="{{MEDIA_URL}}{{v.thumbnail.url}}" onclick="location.href='/video_playing/{{v.slug}}'">
+                    <img class="thumbnail_slip" src="{{v.thumbnail.url}}" onclick="location.href='/video_playing/{{v.slug}}'">
                     <div class="sdiv">
                         <h class="stitle"><a href="/video_playing/{{v.slug}}" class="text-dark">{{v.title}}</a></h>
                         <p class="sdata">views {{v.tviews}} | Likes {{v.tlikes}} | {{v.date.date}}</p>

@@ -5,19 +5,17 @@
 <link rel="stylesheet" href="{% static '/opcoder/css/video_playing.css' %}">
 
 <div class="playlistbutton">
-    <div class="">
-        {% if prev %}
-        <button class="button-2"><a href="/videos?page={{prev}}">&laquo; Previous</a></button>
-        {% else %}
-        <button class="button-2"><a href="#">&laquo; Previous</a></button>
-        {% endif %}
+    {% if prev %}
+    <button class="button-2"><a href="/videos?page={{prev}}">&laquo; Previous</a></button>
+    {% else %}
+    <button class="button-2"><a href="#">&laquo; Previous</a></button>
+    {% endif %}
 
-        {% if nxt %}
-        <button class="button-2"><a href="/videos?page={{nxt}}">Next &raquo;</a></button>
-        {% else %}
-        <button class="button-2"><a href="#">Next &raquo;</a></button>
-        {% endif %}
-    </div>
+    {% if nxt %}
+    <button class="button-2"><a href="/videos?page={{nxt}}">Next &raquo;</a></button>
+    {% else %}
+    <button class="button-2"><a href="#">Next &raquo;</a></button>
+    {% endif %}
 
     <button class="button-1" ><a href="/videos">All</a></button>
     <button class="button-1" ><a href="/playlists">playlist</a></button>
@@ -30,7 +28,7 @@
 <div class="media">
 {% for v in videos %}
     <div class="video_cards">
-        <img class="thumbnail" src="{{MEDIA_URL}}{{v.thumbnail.url}}" onclick="location.href = '/video_playing/{{v.slug}}'">
+        <img class="thumbnail" src="{{v.thumbnail.url}}" onclick="location.href = '/video_playing/{{v.slug}}'">
         <div>
             <h3><a class="ctitle" href="/video_playing/{{v.slug}}">{{v.title}}</a></h3>
             <div>

@@ -30,10 +30,10 @@
         {% if request.user.is_authenticated %}
         <form id="comment-form" method="post" data-post-id="{{ post.sno }}">
             {% csrf_token %}
-            <div class="">
-                <textarea id="new_comment" name="new_comment" required></textarea>
+            <div class="ccomment">
+                <textarea id="new_comment" name="new_comment" class="new_comment" required></textarea>
+                <button type="submit" class="blog-btn cblog-btn">Comment</button>
             </div>
-            <button type="submit" class="blog-btn">Comment</button>
         </form>
         {% endif %}
 

@@ -1,3 +1,323 @@
 {% extends 'opcoder/base.html' %}
 {% block body %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static '/opcoder/css/profile-styles.css' %}">
+
+<section class="hero-section" id="home">
+    <div class="hero-content">
+        <h1 class="hero-title">Akshat Chourey</h1>
+        <p class="hero-tagline">B.Tech CSE Student | Django Full Stack Developer</p>
+
+        <p class="hero-summary">
+            Aspiring Software Engineer focused on building scalable, maintainable web applications. Proficient in the Python/Django ecosystem, dedicated to clean code, and passionate about solving complex problems. Seeking an opportunity to apply strong theoretical knowledge and hands-on project experience in a fast-paced development environment.
+        </p>
+
+        <div class="hero-links">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="https://drive.google.com/file/d/1S8NBK801XuT4662E7eREaJIwxyeqGcMP/view" class="btn btn-secondary" target="_blank">Download CV</a>
+        </div>
+    </div>
+
+    <div class="hero-image-container">
+        <img src="{% static '/opcoder/img/profile.jpg' %}" alt="profile photo" class="hero-image">
+    </div>
+</section>
+<section class="skills-section" id="skills">
+    <h2 class="section-title">My Skills</h2>
+
+    <div class="skills-grid">
+        <div class="skill-category">
+            <h3>Primary Languages</h3>
+            <div class="skill-list">
+                <span class="skill-item">Python</span>
+                <span class="skill-item">Java</span>
+                <span class="skill-item">HTML</span>
+                <span class="skill-item">CSS</span>
+                <span class="skill-item">JavaScript</span>
+                <span class="skill-item">C++</span>
+            </div>
+        </div>
+
+        <div class="skill-category">
+            <h3>Frameworks & Libraries</h3>
+            <div class="skill-list">
+                <span class="skill-item skill-focus">Django</span>
+                <span class="skill-item">Flask</span>
+                <span class="skill-item">React (Basics)</span>
+            </div>
+        </div>
+
+        <div class="skill-category">
+            <h3>Databases & Tools</h3>
+            <div class="skill-list">
+                <span class="skill-item">MySQL</span>
+                <span class="skill-item">PostgreSQL</span>
+                <span class="skill-item">Git/GitHub</span>
+                <span class="skill-item">Docker</span>
+            </div>
+        </div>
+
+        <div class="skill-category">
+            <h3>Cloud & DevOps</h3>
+            <div class="skill-list">
+                <span class="skill-item">AWS S3/EC2</span>
+                <span class="skill-item">Linux</span>
+                <span class="skill-item">CI/CD (Basics)</span>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="projects-section" id="projects">
+    <h2 class="section-title">Featured Projects</h2>
+
+    <div class="projects-row-container">
+
+        <div class="project-card" data-project-id="1" data-theme-color="#00bfff"> <div class="card-content">
+                <h3>TrackMySpend</h3>
+                <p class="project-tagline">A Tkinter GUI application to manage student and professional expenses.</p>
+                <div class="card-toggle-btn">&#9660;</div>
+            </div>
+        </div>
+
+        <div class="project-card" data-project-id="2" data-theme-color="#e67e22"> <div class="card-content">
+                <h3>Pahal Foundation</h3>
+                <p class="project-tagline">Project 2 Tagline goes here.</p>
+                <div class="card-toggle-btn">&#9660;</div>
+            </div>
+        </div>
+
+        <div class="project-card" data-project-id="3" data-theme-color="#9b59b6"> <div class="card-content">
+                <h3>CodeWithAkshat</h3>
+                <p class="project-tagline">Project 3 Tagline goes here.</p>
+                <div class="card-toggle-btn">&#9660;</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-details-expanded" id="project-details-expanded"></div>
+</section>
+<section class="certificates-section" id="certificates">
+    <h2 class="section-title">Certifications</h2>
+
+    <div class="cert-grid">
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/AWS Technical Essentials.png">
+            <h3>AWS Technical Essentials</h3>
+            <p>Issued By: AWS Training & Certification</p>
+            <p>Issued Date: 20 Sep 2025</p>
+            <button class="view-cert-btn">View Credential</button>
+        </div>
+
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/AWS Cloud Practitioner.png">
+            <h3>AWS Certified Cloud Practitioner</h3>
+            <p>Issued By: AWS Training & Certification</p>
+            <p>Issued Date: 19 Sep 2025</p>
+            <button class="view-cert-btn">View Credential</button>
+        </div>
+
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/Coursera_ComputerNetworking.png">
+            <h3>The Bits and Bytes of Computer Networking</h3>
+            <p>Issued By: Google</p>
+            <p>Issued Date: 5 Nov 2024</p>
+            <button class="view-cert-btn">View Credential</button>
+        </div>
+
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/Python Certificate.png">
+            <h3>Python Essentialss</h3>
+            <p>Issued By: VitYarthi</p>
+            <p>Issued Date: 30 Apr 2024</p>
+            <button class="view-cert-btn">View Credential</button>
+        </div>
+
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/Software Engineer Intern Hackerrank.png">
+            <h3>Software Engineer Intern</h3>
+            <p>Issued By: HackerRank</p>
+            <p>Issued Date: 8 Apr 2024</p>
+            <button class="view-cert-btn">View Credential</button>
+        </div>
+
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/javabasic Hackerrank.png">
+            <h3>Java Basics</h3>
+            <p>Issued By: HackerRank</p>
+            <p>Issued Date: 8 Apr 2024</p>
+            <button class="view-cert-btn">View Credential</button>
+        </div>
+
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/problem SolvingBasic Hackerrank.png">
+            <h3>Problem Solving Basic</h3>
+            <p>Issued By: HackerRank</p>
+            <p>Issued Date: 7 Apr 2024</p>
+            <button class="view-cert-btn">View Credential</button>
+        </div>
+
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/PythonBasic Hackerrank.png">
+            <h3>Python Basic</h3>
+            <p>Issued By: HackerRank</p>
+            <p>Issued Date: 7 Apr 2024</p>
+            <button class="view-cert-btn">View Credential</button>
+        </div>
+
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/AIML Certificate.png">
+            <h3>Fundamentals of Al and ML</h3>
+            <p>Issued By: VitYarthi</p>
+            <p>Issued Date: 22 Dec 2023</p>
+            <button class="view-cert-btn">View Credential</button>
+        </div>
+
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/MathLabOnramp.png">
+            <h3>MATLAB Onramp</h3>
+            <p>Issued By: MathWorks</p>
+            <p>Issued Date: 27 Aug 2023</p>
+            <button class="view-cert-btn">View Certificate</button>
+        </div>
+    </div>
+</section>
+
+<div id="certModal" class="modal">
+    <span class="close-btn">&times;</span>
+    <img src="" class="modal-content" id="certImage">
+    <div id="caption">Certificate Name/Issuer</div>
+</div>
+
+<section class="coding-profile-section" id="coding">
+    <h2 class="section-title">Coding Profiles & Activity</h2>
+
+    <div class="profile-grid">
+        <a href="https://www.hackerrank.com/profile/achourey09/" target="_blank" class="profile-card hackerrank">
+            <h3>HackerRank</h3>
+            <p class="total-solved">Total Solved: <span>98</span></p>
+            <ul class="details-list">
+                <li>Java: 59</li>
+                <li>Python: 32</li>
+                <li>Others: 7</li>
+            </ul>
+            <div class="card-link">View Profile &rarr;</div>
+        </a>
+
+        <a href="https://www.geeksforgeeks.org/user/achours09t/" target="_blank" class="profile-card gfg">
+            <h3>GeeksforGeeks</h3>
+            <p class="total-solved">Total Solved: <span>172</span></p>
+            <ul class="details-list">
+                <li>Easy: 64</li>
+                <li>Medium: 95</li>
+                <li>Hard: 13</li>
+            </ul>
+            <div class="card-link">View Profile &rarr;</div>
+        </a>
+
+        <a href="https://leetcode.com/u/achourey09/" target="_blank" class="profile-card leetcode">
+            <h3>LeetCode</h3>
+            <p class="total-solved">Total Solved: <span>117</span></p>
+            <ul class="details-list">
+                <li>Easy: 38</li>
+                <li>Medium: 76</li>
+                <li>Hard: 3</li>
+            </ul>
+            <div class="card-link">View Profile &rarr;</div>
+        </a>
+
+        <a href="https://github.com/Akshatchourey/" target="_blank" class="profile-card github">
+            <h3>GitHub Activity</h3>
+            <p class="total-solved">Active Since: <span>2022</span></p>
+            <ul class="details-list">
+                <li>Total Repos: 13</li>
+                <li>Commits (Last Year): 91</li>
+<!--                <li>Most Active Language: Python</li>-->
+            </ul>
+            <div class="card-link">View Profile &rarr;</div>
+        </a>
+    </div>
+</section>
+<section class="contact-section-simple" id="contact">
+    <h2 class="section-title">Contact Me</h2>
+
+    <div class="contact-list-simple">
+        <a href="mailto:choureyakshat916@gmail.com" class="contact-item-simple">
+            <span class="icon-simple">&#9993;</span> choureyakshat916@gmail.com
+        </a>
+
+        <a href="mailto:akshat.23bce11529@vitbhopal.ac.in" class="contact-item-simple">
+            <span class="icon-simple">&#9993;</span> akshat.23bce11529@vitbhopal.ac.in
+        </a>
+
+        <a href="https://www.linkedin.com/in/akshat-chourey-203011280/" target="_blank" class="contact-item-simple">
+            <span class="icon-simple">in</span> linkedin.com/in/AkshatChourey
+        </a>
+    </div>
+</section>
+
+<script src="{% static 'opcoder/js/profile.js' %}"></script>
+<script>
+const projectData = [
+    // PROJECT 1
+    {
+        id: 1,
+        name: "TrackMySpend",
+        description: "TrackMySpend is a GUI application that helps college students and young professionals manage their daily expenses and understand their spending patterns through intuitive categorization and visual analytics. Integrated a third-party API (Twilio) for seamless mobile interaction, demonstrating proficiency in backend integration and user-centric design.",
+        features: [
+            "WhatsApp Integration: Add expenses on the go using keyword-based commands (e.g., 'onl 500 Food').",
+            "Entry with Categorization: Automatically organizes expenses into categories (food, travel, shopping).",
+            "Visual Analytics: Detailed bar, line, and pie charts for expense breakdown and monthly trends (using Matplotlib).",
+            "Monthly Budgets: Enables users to set limits and track progress."
+        ],
+        techStack: "Tkinter, Matplotlib, Pandas, Cryptography, MySQL Online, Twilio-WhatsApp API",
+        links: {
+            github: "https://github.com/Akshatchourey/Project-Exhibition-1-VITB",
+            video2: "/error404",
+            video: "{% url 'video_playing' 'iA0QHR62TgznW-NklK' %}"
+        },
+        images: [
+            { src: "{{MEDIA_URL}}projectImg/project 1_1.png", caption: "Login/entry point of the application." },
+            { src: "{{MEDIA_URL}}projectImg/project 1_2.png", caption: "Intuitive home screen for TrackMySpend." },
+            { src: "{{MEDIA_URL}}projectImg/project 1_3.png", caption: "Personalize page for checking balance and notes. " },
+            { src: "{{MEDIA_URL}}projectImg/project 1_4.png", caption: "Date entry page - manual or using WhatsApp" },
+            { src: "{{MEDIA_URL}}projectImg/project 1_5.png", caption: "Detailed monthly spending visualizations." },
+            { src: "{{MEDIA_URL}}projectImg/project 1_6.png", caption: "Detailed category wise spending visualizations." }
+        ]
+    },
+    // PROJECT 2
+    {
+        id: 2,
+        name: "Pahal Foundation",
+        description: "Detailed description for Project 2...",
+        features: ["Feature A", "Feature B", "Feature C"],
+        techStack: "<br>Client: HTML, JavaScript, CSS<br>Server: Python, Django, MySql-Online, AWS-S3<br>Paymnt: RazorPay<br>Others Tech Used: Git, GitHub, Docker, Render",
+        links: {
+            github: "https://github.com/Akshatchourey/project-Exhibition-2-VITB",
+            live: "https://pahalfoundation.onrender.com/",
+            video: "/error404"
+        },
+        images: [
+            { src: "{{MEDIA_URL}}projectImg/project 2_1.png", caption: "Intuitive home page for Pahal website." },
+            { src: "{{MEDIA_URL}}projectImg/project 2_2.png", caption: "Donation facilitated using RazorPay API." },
+            { src: "{{MEDIA_URL}}projectImg/project 2_3.png", caption: "Forum section for community - Blogs, Videos, Gallery." },
+            { src: "{{MEDIA_URL}}projectImg/project 2_4.png", caption: "Dashboard home page for foundation backend purposes." },
+            { src: "{{MEDIA_URL}}projectImg/project 2_5.png", caption: "Student info to manage enrolled students." },
+            { src: "{{MEDIA_URL}}projectImg/project 2_6.png", caption: "Admin penal for managing permissions and assigning tasks." }
+        ]
+    },
+    // PROJECT 3
+    {
+        id: 3,
+        name: "CodeWithAkshat",
+        description: "Detailed description for Project 3...",
+        features: ["Feature X", "Feature Y"],
+        techStack: "<br>Client: HTML, CSS, JavaScript<br>Server: Python, Django, MySql-Online, AWS-S3<br>Others Tech Used: Git, GitHub, Docker, Vercel",
+        links: {
+            github: "https://github.com/Akshatchourey/2website",
+            live: "/",
+            video: "/error404"
+        },
+        images: [
+            { src: "{{MEDIA_URL}}projectImg/project 3_1.png", caption: "Intuitive home screen of personal website." },
+            { src: "{{MEDIA_URL}}projectImg/project 3_2.png", caption: "Blog Center consisting of new released blogs." },
+            { src: "{{MEDIA_URL}}projectImg/project 3_3.png", caption: "Video Feed - tailored to user preference." },
+            { src: "{{MEDIA_URL}}projectImg/project 3_4.png", caption: "Video streaming page with more preferred suggestions." },
+            { src: "{{MEDIA_URL}}projectImg/project 3_5.png", caption: "Feedback page for further improvements." },
+            { src: "{{MEDIA_URL}}projectImg/project 3_6.png", caption: "Profile page - The reason why I made this website." }
+        ]
+    }
+];
+</script>
+
 {% endblock body %}

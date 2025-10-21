@@ -5,17 +5,18 @@
     .p1{
         max-width:none;
     }
-    .div3{
-        height: fit-content;
+    .p-1{
+        margin:auto;
     }
-    .uli3{
+    .div3{
+    height: fit-content;
         width: 100%;
         text-align: center;
         margin-inline: auto;
         max-width: 625px;
         align-items: center;
     }
-    .div-exp{
+    .div3-exp{
         display: inline-flex;
         align-items: center;
     }

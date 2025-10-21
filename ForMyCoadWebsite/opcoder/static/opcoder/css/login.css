@@ -3,6 +3,15 @@
     padding:0;
 }
 
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    padding-left: 50px;
+}
+
 #hide1{
     display:none;
 }
@@ -18,20 +27,20 @@ video{
 .box{
     width:360px;
     padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     background: #191919;
-    text-align: center;
     box-shadow:0 0 20px 20px rgba(212, 4, 4, 0.5);
 }
 .box input{
-    border: 0;
     background: none;
-    display: block;
-    margin:10px;
-    margin-left: 10px;
+    margin-inline: 10px;
     border: 2px solid #3498db;
     padding: 14px 10px;
     width: 200px;
@@ -50,11 +59,9 @@ video{
     border: 0;
     background: none;
     display: block;
-    margin: 10px;
-    margin-left: 55px;
+    margin-left: 30px;
     border: 2px solid #2ecc71;
     padding: 14px 40px;
-    outline: none;
     color: wheat;
     border-radius: 20px;
     transition: 0.25s;
@@ -67,19 +74,14 @@ video{
 
 h1{
     color: rgb(255, 255, 255);
-    padding-bottom: 40px;
+    margin-bottom: 40px;
     font-style: italic;
     font-size: 40px;
 }
-.user{
-    display: flex;
-    text-align: center;
-    padding-left:25px;
-}
+
 .pass{
-    display:flex; 
-    text-align: center;
-    padding-left:25px;
+    display:flex;
+    align-items: center;
 }
 
 .fa-eye , .fa-eye-slash{
@@ -88,8 +90,7 @@ h1{
 
 i{
     color: white;
-    size: 20;
-    padding-top:25px;
+    side:20;
 }
 .links a{
     text-decoration: none;

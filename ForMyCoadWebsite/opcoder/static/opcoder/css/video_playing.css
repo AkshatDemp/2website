@@ -67,9 +67,8 @@
     max-width: 1450px;
 }
 .vpsection1{
-    min-width: 70%;
+    width: 70%;
     background: transparent;
-    flex: 1;
 }
 .vscreen{
     width: 85%;
@@ -122,6 +121,7 @@
 .vcomment{
     display: flex;
     align-items: center;
+    gap: 15px;
 }
 .new_comment{
     width: 80%;
@@ -129,9 +129,16 @@
     font-size: 1.3rem;
     line-height: 1rem;
     font-weight: 350;
+    border: none;
+    border-bottom: 2px solid;
+}
+
+.video-comment-body{
+    border-bottom: 2px dashed gray;
 }
 
 .vpsection2{
+    width: 31%;
     background: transparent;
     display: flex;
     flex-direction: column;
@@ -182,4 +189,18 @@
 
 .video-btn:hover {
     background-color: rgba(0, 176, 82, 0.781);
+}
+
+@media only screen and (max-width: 1100px){
+    .vpsection0{
+        flex-direction: column;
+        align-items: center;
+    }
+    .vpsection1{
+        width:100%;
+    }
+    .vpsection2{
+        width: 85%;
+        margin-bottom: 20px;
+    }
 }

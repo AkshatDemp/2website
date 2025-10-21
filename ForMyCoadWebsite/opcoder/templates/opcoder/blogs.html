@@ -1,4 +1,5 @@
 {% extends 'opcoder/base.html' %}
+{% block title %}CodeWithAkshat - Blogs{% endblock title %}
 {% block body %}
 
 <section class="blog-s1">
@@ -9,7 +10,7 @@
         {% for bg in blogs %}
         <div class="blog-item">
             <h3 class="blog-title"><a href="/blogpost/{{bg.slug}}">{{bg.sno}}.{{bg.title}}</a></h3>
-            <p class="blog-meta">{{bg.owner}} | {{bg.time.date}}</p>
+            <p class="blog-meta">{{bg.owner}} | {{bg.time.date}} <br>views {{bg.views}} | Likes {{bg.likes}}</p>
             {{bg.content|safe|truncatewords:48}}
             <button class="blog-btn"><a href="/blogpost/{{bg.slug}}">Read More...</a></button>
         </div>

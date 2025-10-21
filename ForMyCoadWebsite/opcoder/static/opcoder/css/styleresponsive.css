@@ -2,6 +2,9 @@
     .div1{
         flex-direction: column;
     }
+    .div2{
+        width: none;
+    }
     .p1{
         max-width:none;
     }
@@ -41,9 +44,6 @@
         align-items: center;
         text-align: center;
     }
-    .inp-1{
-        width: 100%;
-    }
     .r-burger-resp{
          transition: transform .8s ease-in-out;
     }
@@ -72,19 +72,5 @@
     .q-ul-2{
         border-top: 5px solid;
         padding-top: 12px;
-    }
-}
-
-@media only screen and (max-width: 1300px){
-    .vpsection0{
-        flex-direction: column;
-    }
-    .vpsection1{
-        width: 100%;
-    }
-    .vpsection2{
-        width: 85%;
-        margin: auto;
-        margin-bottom: 20px;
     }
 }

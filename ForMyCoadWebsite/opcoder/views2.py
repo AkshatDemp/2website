@@ -57,6 +57,7 @@ def playlists(request):
 
 def video_playing(request, slug):
     video_found = Video.objects.filter(slug=slug).first()
+    comments = video_found.videoComment.all().order_by("-date")
 
     if video_found:
         video_found.tviews += 1
@@ -76,7 +77,7 @@ def video_playing(request, slug):
     # more_videos = list(more_videos)
     # more_videos = random.sample(more_videos, len(more_videos))
 
-    context = {'name': video_found, 'types':video_found.source[8:23], 'plvideos':pl_videos, 'mvideos':more_videos}
+    context = {'name': video_found, 'types':video_found.source[8:23], 'comments':comments, 'plvideos':pl_videos, 'mvideos':more_videos}
     return render(request, "opcoder/video_playing.html", context)
 
 

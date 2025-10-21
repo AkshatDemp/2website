@@ -44,7 +44,9 @@ def search(request):
             rank=RawSQL(fts_rank_sql, (search_term,))
         ).filter(rank__gt=0).order_by('-rank', '-tviews')
 
-    context = {'query': query_string, 'blog_results': blog_results, 'video_results': video_results}
+    total_results = len(blog_results) + len(video_results)
+
+    context = {'query': query_string, 'blog_results': blog_results, 'video_results': video_results, 'total_results':total_results}
 
     return render(request, 'opcoder/search_results.html', context)
 
@@ -78,7 +80,8 @@ def blog(request):
 
 def blogpost(request, slug):
     this_blog = Blog.objects.filter(slug=slug).first()
-    context = {'post': this_blog}
+    comments = this_blog.blogComment.all().order_by("-date")
+    context = {'post': this_blog, 'comments':comments}
     if this_blog:
         this_blog.views += 1
         this_blog.save()

@@ -1,4 +1,5 @@
 {% extends 'opcoder/base.html' %}
+{% block title %}CodeWithAkshat - Profile{% endblock title %}
 {% block body %}
 {% load static %}
 
@@ -82,14 +83,14 @@
 
         <div class="project-card" data-project-id="2" data-theme-color="#e67e22"> <div class="card-content">
                 <h3>Pahal Foundation</h3>
-                <p class="project-tagline">Project 2 Tagline goes here.</p>
+                <p class="project-tagline">This is a full-stack website, designed for a non-profit foundation run by students.</p>
                 <div class="card-toggle-btn">&#9660;</div>
             </div>
         </div>
 
         <div class="project-card" data-project-id="3" data-theme-color="#9b59b6"> <div class="card-content">
                 <h3>CodeWithAkshat</h3>
-                <p class="project-tagline">Project 3 Tagline goes here.</p>
+                <p class="project-tagline">CodeWithAkshat is a content platform and a personal portfolio website.</p>
                 <div class="card-toggle-btn">&#9660;</div>
             </div>
         </div>
@@ -101,70 +102,70 @@
     <h2 class="section-title">Certifications</h2>
 
     <div class="cert-grid">
-        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/AWS Technical Essentials.png">
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/AWS Technical Essentials.png" data-cert-title="AWS Technical Essentials">
             <h3>AWS Technical Essentials</h3>
             <p>Issued By: AWS Training & Certification</p>
             <p>Issued Date: 20 Sep 2025</p>
             <button class="view-cert-btn">View Credential</button>
         </div>
 
-        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/AWS Cloud Practitioner.png">
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/AWS Cloud Practitioner.png" data-cert-title="AWS Certified Cloud Practitioner">
             <h3>AWS Certified Cloud Practitioner</h3>
             <p>Issued By: AWS Training & Certification</p>
             <p>Issued Date: 19 Sep 2025</p>
             <button class="view-cert-btn">View Credential</button>
         </div>
 
-        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/Coursera_ComputerNetworking.png">
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/Coursera_ComputerNetworking.png" data-cert-title="The Bits and Bytes of Computer Networking">
             <h3>The Bits and Bytes of Computer Networking</h3>
             <p>Issued By: Google</p>
             <p>Issued Date: 5 Nov 2024</p>
             <button class="view-cert-btn">View Credential</button>
         </div>
 
-        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/Python Certificate.png">
-            <h3>Python Essentialss</h3>
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/Python Certificate.png" data-cert-title="Python Essentials">
+            <h3>Python Essentials</h3>
             <p>Issued By: VitYarthi</p>
             <p>Issued Date: 30 Apr 2024</p>
             <button class="view-cert-btn">View Credential</button>
         </div>
 
-        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/Software Engineer Intern Hackerrank.png">
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/Software Engineer Intern Hackerrank.png" data-cert-title="Software Engineer Intern">
             <h3>Software Engineer Intern</h3>
             <p>Issued By: HackerRank</p>
             <p>Issued Date: 8 Apr 2024</p>
             <button class="view-cert-btn">View Credential</button>
         </div>
 
-        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/javabasic Hackerrank.png">
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/javabasic Hackerrank.png" data-cert-title="Java Basics">
             <h3>Java Basics</h3>
             <p>Issued By: HackerRank</p>
             <p>Issued Date: 8 Apr 2024</p>
             <button class="view-cert-btn">View Credential</button>
         </div>
 
-        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/problem SolvingBasic Hackerrank.png">
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/problem SolvingBasic Hackerrank.png" data-cert-title="Problem Solving Basic">
             <h3>Problem Solving Basic</h3>
             <p>Issued By: HackerRank</p>
             <p>Issued Date: 7 Apr 2024</p>
             <button class="view-cert-btn">View Credential</button>
         </div>
 
-        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/PythonBasic Hackerrank.png">
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/PythonBasic Hackerrank.png" data-cert-title="Python Basic">
             <h3>Python Basic</h3>
             <p>Issued By: HackerRank</p>
             <p>Issued Date: 7 Apr 2024</p>
             <button class="view-cert-btn">View Credential</button>
         </div>
 
-        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/AIML Certificate.png">
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/AIML Certificate.png" data-cert-title="Fundamentals of Al and ML">
             <h3>Fundamentals of Al and ML</h3>
             <p>Issued By: VitYarthi</p>
             <p>Issued Date: 22 Dec 2023</p>
             <button class="view-cert-btn">View Credential</button>
         </div>
 
-        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/MathLabOnramp.png">
+        <div class="cert-card" data-cert-image="{{MEDIA_URL}}certificates/MathLabOnramp.png"  data-cert-title="MATLAB Onramp">
             <h3>MATLAB Onramp</h3>
             <p>Issued By: MathWorks</p>
             <p>Issued Date: 27 Aug 2023</p>
@@ -174,9 +175,11 @@
 </section>
 
 <div id="certModal" class="modal">
-    <span class="close-btn">&times;</span>
-    <img src="" class="modal-content" id="certImage">
-    <div id="caption">Certificate Name/Issuer</div>
+    <div class="modal-wrapper">
+        <span class="close-btn">&times;</span>
+        <img src="" class="modal-content" id="certImage">
+        <div id="caption">Certificate Name/Issuer</div>
+    </div>
 </div>
 
 <section class="coding-profile-section" id="coding">
@@ -279,8 +282,13 @@ const projectData = [
     {
         id: 2,
         name: "Pahal Foundation",
-        description: "Detailed description for Project 2...",
-        features: ["Feature A", "Feature B", "Feature C"],
+        description: "This website is a digital hub for Pahal Foundation, a student-run NGO, designed to streamline operations and enhance transparency. The application centralizes volunteer and student records, manages incoming donations, and provides a public portal detailing the foundations mission and impact. It demonstrates the ability to build robust, user-centric platforms for non-profit organizational management.",
+        features: [
+            "Centralized Public Impact Portal: Designed an accessible platform to showcase the foundation's mission, activities, and community impact.",
+            "Transparency & Trust: Integrated a system for automated, regular updates on fund utilization and event reports, ensuring trust and clear communication with donors.",
+            "Seamless Donation System: Implemented a one-click donation gateway for funds and physical goods, featuring secure processing.",
+            "Efficient Volunteer Management: Developed a role-based portal allowing volunteers to track student attendance, assign tasks, and manage records digitally."
+        ],
         techStack: "<br>Client: HTML, JavaScript, CSS<br>Server: Python, Django, MySql-Online, AWS-S3<br>Paymnt: RazorPay<br>Others Tech Used: Git, GitHub, Docker, Render",
         links: {
             github: "https://github.com/Akshatchourey/project-Exhibition-2-VITB",
@@ -300,8 +308,13 @@ const projectData = [
     {
         id: 3,
         name: "CodeWithAkshat",
-        description: "Detailed description for Project 3...",
-        features: ["Feature X", "Feature Y"],
+        description: "CodeWithAkshat is a personal portfolio and content platform. This dynamic website serves as a digital content delivery hub, specifically featuring a unique video feed module that uses various algorithms to generate user-tailored content, directly showcasing Data Science and analytical integration skill within a full-stack environment.",
+        features: [
+            "Interactive, Multi-Page Navigation: Created an engaging and fully responsive front-end, featuring interactive elements and smooth navigation throughout the application.",
+            "Algorithmic Video Feed Generation: Developed and implemented custom recommendation algorithms to generate user-tailored video feeds, demonstrating applied proficiency in data analysis and machine learning concepts.",
+            "Centralized Blog and Content Management: Designed and built a dedicated Blog page to manage all personal articles, providing users with searchable and categorized access to all the articles.",
+            "Portfolio Showcase (Meta-Project): Seamlessly incorporated the profile page, serving as the definitive, integrated showcase of all skills and projects.",
+        ],
         techStack: "<br>Client: HTML, CSS, JavaScript<br>Server: Python, Django, MySql-Online, AWS-S3<br>Others Tech Used: Git, GitHub, Docker, Vercel",
         links: {
             github: "https://github.com/Akshatchourey/2website",

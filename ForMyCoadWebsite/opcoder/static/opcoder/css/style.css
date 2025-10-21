@@ -19,6 +19,7 @@
 .div1{
     align-items: center;
     display:flex;
+    margin-top: 2px;
 }
 .uli1{
     width: 46%;
@@ -42,10 +43,13 @@ h2{
 }
 
 .inp-1{
+    border: 2px solid;
     border-radius: 16px;
     width: 190px;
     height: 35px;
     margin: 4px;
+    padding: 4px;
+    font-size: 1.2rem;
 }
 .logo{
     /* cursor: pointer; */
@@ -86,6 +90,11 @@ li a{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+}
+
+ol li{
+    margin-bottom: 8px;
+    font-size: 1.1rem;
 }
 
 .section0{
@@ -147,18 +156,18 @@ li a{
     margin-top: 10px;
     padding: 32px;
     font-size: 1.7rem;
-    margin-left: auto;margin-right: auto;
+    margin-inline: auto;
     align-items: center;
     max-width: var(--max-width);
 }
 .q-ul-1{
     font-style: italic;
-    width: 50%;
+    flex: 1;
     border-right: 5px solid;
 }
 .q-ul-2{
     font-style: italic;
-    width:50%;
+    flex: 1;
 }
 
 h5{
@@ -174,16 +183,21 @@ h5{
     display:flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: space-around;
     margin-inline: auto;
     max-width: var(--max-width);
+    gap: 10px;
 }
 .div4{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     text-align: center;
     border: 2px solid rgb(97, 17, 78);
     border-radius: 20px;
     height:370px;
     width:285px;
-    margin: auto;
     margin-bottom: 12px;
     padding: 16px;
 }

@@ -1,4 +1,5 @@
 {% extends 'opcoder/base.html' %}
+{% block title %}CodeWithAkshat - Video{% endblock title %}
 {% block body %}
 {% load static %}
 
@@ -8,8 +9,7 @@
     <div class="vpsection1">
         <div class="vscreen">
             {% if types != "personalcode-v1" %}
-            <iframe class="vscreen1" src="{{name.source}}" frameborder="0" 
-            allow="accelerometer; encrypted-media; gyroscope; web-share" allowfullscreen></iframe>
+            <iframe class="vscreen1" src="{{name.source}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             {% else %}
             <video class="vscreen1" preload="metadata" poster="{{name.thumbnail.url}}" controls="controls">
                 <source src= "{{name.source}}">
@@ -45,17 +45,19 @@
             {% endif %}
 
             <div id="comment-list-container">
-            {% if not name.videoComment.all %}
+            {% if not comments %}
                 <h2 id="no-comments-msg">No Comments yet...Add one</h2>
             {% else %}
-                {% for comment in name.videoComment.all %}
-                <div class="video-comment-body">
-                    <p>{{ comment.body }}</p>
-                    <div class="video-comment-meta">
-                        {{ comment.name }} | {{ comment.date|date:"d-m-Y" }}
+                <div class="comment-list">
+                    {% for comment in comments %}
+                    <div class="video-comment-body">
+                        <p>{{ comment.body }}</p>
+                        <div class="video-comment-meta">
+                            {{ comment.name }} | {{ comment.date|date:"d-m-Y" }}
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             {% endif %}
             </div>
         </div>

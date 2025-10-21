@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'opcoder/css/login.css' %}">
     <script src="https://use.fontawesome.com/b25563bc12.js"></script>
-    <title>Login - Code With Akshat</title>
+    <link rel="icon" type="image/icon" href="{% static 'opcoder/icon/favicon.ico' %}">
+    <title>CodeWithAkshat - Login</title>
 </head>
 <body>
     <div class="box">
@@ -21,7 +22,7 @@
             {% endif %}
         </div>
         <h1>LOGIN</h1>
-        <form method="post" id="login-form">
+        <form class="login-form" method="post" id="login-form">
             {% csrf_token %}
             <div class="user">
                 <i class="fa fa-user"></i>
@@ -40,7 +41,7 @@
 
     </div>
     <video autoplay muted loop >
-        <source src="{% static 'opcoder/video1/login.mp4' %}">
+        <source src="{{MEDIA_URL}}login.mp4">
     </video>
     <script>
         function myFunction() {

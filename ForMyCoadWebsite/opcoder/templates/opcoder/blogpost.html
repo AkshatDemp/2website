@@ -1,4 +1,5 @@
 {% extends 'opcoder/base.html' %}
+{% block title %}CodeWithAkshat - BlogPost{% endblock title %}
 {% block body %}
 
 <div class="blog-container">
@@ -14,13 +15,15 @@
                 <p>{{post.content|safe}}</p>
             </div>
         </div>
-        <a href="/blogs" class=""><button class="blog-btn">More Blogs...</button></a>
-        <div class="">
-            {% if request.user.is_authenticated %}
-            <button  id="like-button" data-post-id="{{ post.sno }}" class="blog-btn">👍 Like</button>
-            {% else %}
-            <h3>Login to Like and comment on this video</h3>
-            {% endif %}
+        <div class="cmore">
+            <a href="/blogs" class=""><button class="blog-btn">More Blogs...</button></a>
+            <div class="">
+                {% if request.user.is_authenticated %}
+                <button  id="like-button" data-post-id="{{ post.sno }}" class="blog-btn">👍 Like</button>
+                {% else %}
+                <h3>Login to Like and comment on this video</h3>
+                {% endif %}
+            </div>
         </div>
     </div>
 
@@ -38,10 +41,11 @@
         {% endif %}
 
         <div id="comment-list-container">
-        {% if not post.blogComment.all %}
+        {% if not comments %}
             <h2 id="no-comments-msg">No Comments yet...Add one</h2>
         {% else %}
-            {% for comment in post.blogComment.all %}
+            <div class="comment-list">
+            {% for comment in comments %}
             <div class="comment">
                 <p>{{ comment.body }}</p>
                 <div class="comment-meta">
@@ -49,6 +53,7 @@
                 </div>
             </div>
             {% endfor %}
+            </div>
         {% endif %}
         </div>
     </div>

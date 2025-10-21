@@ -3,33 +3,39 @@
 const modal = document.getElementById("certModal");
 const modalImg = document.getElementById("certImage");
 const captionText = document.getElementById("caption");
-const span = document.getElementsByClassName("close-btn")[0];
 const certCards = document.querySelectorAll('.cert-card');
+const closeBtn = document.querySelector('.close-btn');
 
-function openCertModal(imageSrc, title) {
-    modal.style.display = "block";
-    modalImg.src = imageSrc;
-    captionText.innerHTML = title;
-}
+const preloadedImages = [];
+function setupCertificates() {
+    certCards.forEach(card => {
+        const imageSrc = card.getAttribute('data-cert-image');
+        const title = card.getAttribute('data-cert-title') || card.querySelector('h3').textContent;
+        const button = card.querySelector('.view-cert-btn');
 
-certCards.forEach(card => {
-    const button = card.querySelector('.view-cert-btn');
-    const imageSrc = card.getAttribute('data-cert-image');
-    const title = card.querySelector('h3').textContent;
-    button.addEventListener('click', () => {
-        openCertModal(imageSrc, title);
+        if (imageSrc) {
+            const img = new Image();
+            img.src = imageSrc;
+            preloadedImages.push(img);
+        }
+        button.addEventListener('click', () => {
+            modalImg.src = imageSrc;
+            captionText.innerHTML = title;
+            modal.classList.add('open');
+        });
     });
-});
-function closeCertModal() {
-    modal.style.display = "none";
-}
-span.onclick = closeCertModal;
-window.onclick = function(event) {
-    if (event.target == modal) {
-        closeCertModal();
+    function closeCertModal() {
+        modal.classList.remove('open');
     }
-}
+    closeBtn.addEventListener('click', closeCertModal);
 
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeCertModal();
+        }
+    });
+}
+setupCertificates();
 
 // JS for Project Section
 

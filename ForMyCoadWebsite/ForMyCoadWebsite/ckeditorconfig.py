@@ -94,4 +94,4 @@ CKEDITOR_5_CONFIGS = {
     }
 }
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = "authenticated"
-# CKEDITOR_5_FILE_STORAGE = "path_to_storage.CustomStorage"
+CKEDITOR_5_FILE_STORAGE = 'ForMyCoadWebsite.storage_backends.S3BlogImgStorage'

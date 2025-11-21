@@ -2,16 +2,16 @@
 {% block title %}CodeWithAkshat - BlogPost{% endblock title %}
 {% block body %}
 
-<div class="blog-container">
+<div class="blogpost-container">
     <h1 class="blog-title">Welcome to Blog Center</h1>
     <p>You will find our community thoughts, views and opinion here on current topics as earliest.</p>
 
     <div class="blog-content">
-        <div class="blog-body">
-            <h2 class="mt-0">{{post.title}}</h2>
+        <div class="">
+            <h1 class="mt-0">{{post.title}}</h1>
             {{post.owner}} | {{post.time.date}}
-            views {{post.views}} | Likes <span id="like-count">{{post.likes}}</span>
-            <div>
+            <br>Views {{post.views}} | Likes <span id="like-count">{{post.likes}}</span>
+            <div class="blog-body">
                 <p>{{post.content|safe}}</p>
             </div>
         </div>

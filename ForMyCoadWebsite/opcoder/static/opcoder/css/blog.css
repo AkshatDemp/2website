@@ -12,7 +12,7 @@ a{
 
 .blog-container {
     max-width: 800px;
-    margin: auto;
+    margin: 20px auto;
     padding: 20px;
     background: white;
     border-radius: 20px;
@@ -57,14 +57,122 @@ a{
     margin-bottom: 6px;
 }
 
+
+.blogpost-container{
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 20px;
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 8px 17px rgba(0, 0, 0, 0.15);
+}
+
 .blog-content {
     font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--text-color);
-    text-align: justify;
     background: var(--accent-color);
     padding: 20px;
     margin-top: 10px;
+}
+
+.blog-body {
+    padding: 20px 0;
+    font-size: 1.1rem;
+    text-align: justify;
+    overflow-x: hidden;
+}
+.blog-body h1 { font-size: 1.8rem; margin-top: 1.5rem; }
+.blog-body h2 { font-size: 1.6rem; margin-top: 1.4rem; }
+.blog-body p { margin-bottom: 1.2em; }
+
+/* Meta Info and Title inside blog-content */
+.blog-content h1.mt-0 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+/* 1. Global Reset for Embedded Content */
+.blog-body img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+    border-radius: 8px;
+}
+
+/* 3. Table Responsiveness */
+.blog-body table {
+    width: 100% !important;
+    max-width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    overflow-x: auto;
+    display: block;
+}
+.blog-body table td, .blog-body table th {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* 4. Code Blocks & Pre-formatted Text */
+.blog-body pre {
+    background: #f4f4f4;
+    padding: 15px;
+    border-left: 4px solid var(--primary-color);
+    overflow-x: auto;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* 5. Blockquotes */
+.blog-body blockquote {
+    margin: 20px 0;
+    padding: 10px 20px;
+    border-left: 5px solid var(--secondary-color);
+    background: #f9f9f9;
+    font-style: italic;
+    color: #666;
+}
+
+.blog-body .image-style-align-left,
+.blog-body .align-left {
+    float: left;
+    margin-right: 1.5em; /* Space between image and text */
+    margin-bottom: 1em;
+    max-width: 40%; /* Control image width when floating */
+    min-width: 200px;
+}
+
+.blog-body .image-style-align-right,
+.blog-body .align-right {
+    float: right;
+    margin-left: 1.5em; /* Space between text and image */
+    margin-bottom: 1em;
+    max-width: 40%; /* Control image width when floating */
+    min-width: 200px;
+}
+
+/* Fix 2: Full-width Image Style (often used by CKEditor) */
+.blog-body .image-style-full {
+    float: none !important;
+    width: 100% !important;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Fix 3: Center Image Style */
+.blog-body .image-style-center {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    float: none !important;
+}
+
+/* Ensure subsequent content clears the float */
+.blog-body::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .blog-btn {
@@ -105,6 +213,14 @@ a{
     color: var(--text-color);
     text-align: justify;
     padding: 20px;
+    margin-top: 30px;
+}
+
+.blog-comment h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
 }
 
 .comment-list{
@@ -123,14 +239,52 @@ a{
 }
 
 .new_comment{
-    width: 609px;
-    font-family: Roboto, Arial, sans-serif;
-    font-size: 1.3rem;
+    flex-grow: 1; /* Allows textarea to take maximum width */
+    min-height: 80px;
+    font-family: inherit;
+    font-size: 1rem; /* Reduced size for better fit */
     font-weight: 350;
     border: none;
-    border-bottom: 2px solid;
+    border-bottom: 2px solid var(--primary-color);
+    resize: vertical; /* Allow resizing vertically */
+    padding: 5px 0;
 }
 
 @media only screen and (max-width: 833px){
     .comment-list{max-width: none;}
+}
+
+@media only screen and (max-width: 768px) {
+    .blog-container {
+        padding: 15px;
+        margin: 10px;
+        border-radius: 10px;
+    }
+
+    .blog-title {
+        font-size: 1.8rem;
+    }
+
+    .blog-content {
+        font-size: 1rem;
+    }
+
+    .new_comment {
+        width: 100%; /* Full width on mobile */
+        font-size: 1.1rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .blog-body .align-left,
+    .blog-body .align-right,
+    .blog-body .image-style-align-left,
+    .blog-body .image-style-align-right {
+        float: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        display: block;
+    }
 }

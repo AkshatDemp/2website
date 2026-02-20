@@ -17,7 +17,7 @@
     cursor: pointer;
 }
 .thumbnail_slip{
-    width: 168px;
+    height: 90px;
     aspect-ratio: 16/9;
     cursor: pointer;
     border-radius: 10px;
